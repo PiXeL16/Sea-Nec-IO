@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.neenbedankt.android-apt'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
@@ -17,11 +19,53 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
+
+    final MOSBY_VERSION = '1.2.0'
+    final DAGGER_VERSION = '2.0.1'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+
+    //Bus
+    compile 'de.greenrobot:eventbus:2.4.0'                                  //proguard
+    //View inyection
+    compile 'com.jakewharton:butterknife:7.0.1'                             //proguard
+    //MVP
+    compile "com.hannesdorfmann.mosby:core:$MOSBY_VERSION"
+    compile "com.hannesdorfmann.mosby:mvp:$MOSBY_VERSION"
+    compile "com.hannesdorfmann.mosby:retrofit:$MOSBY_VERSION"
+    compile "com.hannesdorfmann.mosby:viewstate:$MOSBY_VERSION"
+    compile "com.hannesdorfmann.mosby:rx:$MOSBY_VERSION"
+    //Annotations
+    apt 'frankiesardo:icepick-processor:3.0.2'
+    apt 'com.hannesdorfmann.fragmentargs:processor:2.1.2'
+    //Parcelable
+    compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.1'
+    apt 'com.hannesdorfmann.parcelableplease:processor:1.0.1'
+    //Instance State
+    apt 'frankiesardo:icepick-processor:3.0.2'
+    apt 'com.hannesdorfmann.fragmentargs:processor:2.1.2'
+    //Inyection
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"                      //proguard
+    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"                 //proguard
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    //Logging
+    compile 'com.jakewharton.timber:timber:3.1.0'
+    //Leaks
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'         //proguard
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1' //proguard
+    //Firebase
+    compile 'com.firebase:firebase-client-android:2.5.0+'
+
 }
