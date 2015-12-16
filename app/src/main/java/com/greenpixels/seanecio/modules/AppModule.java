@@ -7,7 +7,8 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by chris on 12/15/15.
+ * Dagger2 Module for the application object
+ * It provides the application object
  */
 @Module
 public class AppModule {

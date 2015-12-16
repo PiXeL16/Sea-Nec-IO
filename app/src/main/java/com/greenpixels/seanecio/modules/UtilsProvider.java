@@ -10,7 +10,7 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by chris on 12/15/15.
- * General class that provices utils, like EventBus and others
+ * General class that provides utils, like EventBus and others dagger2
  */
 @Module
 public class UtilsProvider {

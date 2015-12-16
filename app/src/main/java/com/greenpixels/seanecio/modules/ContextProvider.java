@@ -7,8 +7,7 @@ import dagger.Provides;
 import rx.android.internal.Preconditions;
 
 /**
- * Created by chris on 12/15/15.
- * Provides the context object
+ * Dagger2 Provides the context object
  */
 @Module
 public class ContextProvider {
