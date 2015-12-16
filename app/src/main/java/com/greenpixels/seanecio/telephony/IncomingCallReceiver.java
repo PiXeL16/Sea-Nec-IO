@@ -11,7 +11,7 @@ import timber.log.Timber;
 
 /**
  * Created by chris on 12/14/15.
- * The class will track phonecall actions do stuff with it
+ * The class will track incoming calls and show notifications or store the last number to be suggested when reporting a phone number
  */
 
 public class IncomingCallReceiver extends BroadcastReceiver {
