@@ -6,6 +6,8 @@ package com.greenpixels.seanecio.model;
  */
 public class PhoneNumber {
 
+    public static final String collectionName = "phoneNumbers";
+
     private String phoneNumber;
     private String description;
     private boolean active;
@@ -22,6 +24,13 @@ public class PhoneNumber {
         this.active = active;
         this.reportedBy = reportedBy;
     }
+
+
+    public PhoneNumber(String phoneNumber, String description) {
+        this.phoneNumber = phoneNumber;
+        this.description = description;
+    }
+
 
     public String getPhoneNumber() {
         return phoneNumber;

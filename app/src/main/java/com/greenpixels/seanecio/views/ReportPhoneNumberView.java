@@ -7,5 +7,10 @@ import com.hannesdorfmann.mosby.mvp.MvpView;
  */
 public interface ReportPhoneNumberView extends MvpView {
 
+    public void showContent();
+
+    public void showError(String error);
+
+    public void showLoading();
 
 }
