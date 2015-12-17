@@ -25,9 +25,10 @@ import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 
 /**
- * Created by chris on 12/15/15.
+ * Activity to report a phone number
  */
 
 public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneNumberView, ReportPhoneNumberPresenter> implements ReportPhoneNumberView {
@@ -39,12 +40,14 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     @Bind(R.id.btn_report_phonenumber)
     Button _btnReportPhoneNumber;
     @Bind(R.id.progressBar)
-    ProgressBar _progressBar;
+    SmoothProgressBar _progressBar;
 
 
     private ReportPhoneNumberComponent _component;
 
-
+    /**
+     * Inject the dependencies in the activity
+     */
     @Override
     public void injectDependencies(){
         AppComponent appComponent = MainApp.get(this).appComponent();
@@ -71,11 +74,16 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         setContentView(R.layout.activity_report_number);
     }
 
+    /**
+     * Creates the presenter
+     * @return
+     */
     @NonNull
     @Override
     public ReportPhoneNumberPresenter createPresenter() {
         return _component.presenter();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,28 +101,44 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         return new ReportPhoneNumberViewState();
     }
 
+    /**
+     * Shows the content view
+     */
     @Override
     public void showContent() {
 
         ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
         vs.setShowContent();
 
+        _btnReportPhoneNumber.setEnabled(true);
+        _progressBar.setVisibility(View.GONE);
+
     }
 
+    /**
+     * Shows the Error view
+     * @param error
+     */
     @Override
     public void showError(String error) {
         ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
         vs.setError(error);
         vs.setShowError();
+        _btnReportPhoneNumber.setEnabled(true);
         _progressBar.setVisibility(View.GONE);
         AlertUtils.showToast(error, this);
     }
 
+    /**
+     * Shows the loading view
+     */
     @Override
     public void showLoading() {
         ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
         vs.setShowLoading();
+        _btnReportPhoneNumber.setEnabled(false);
         _progressBar.setVisibility(View.VISIBLE);
+        _progressBar.progressiveStart();
     }
 
 
@@ -126,7 +150,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         boolean valid = true;
         if(StringUtils.isEmpty(_editTextPhoneNumber.getText().toString())){
             valid = false;
-            _editTextPhoneNumber.setError("");
+            _editTextPhoneNumber.setError(getString(R.string.phone_number_required_text));
         }
         else
         {
@@ -134,7 +158,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         }
         if(StringUtils.isEmpty(_editTextDescription.getText().toString())){
             valid = false;
-            _editTextDescription.setError("");
+            _editTextDescription.setError(getString(R.string.description_required_text));
         }
         else
         {
@@ -144,13 +168,13 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     }
 
 
+    /**
+     * User reporting
+     */
     @OnClick(R.id.btn_report_phonenumber)
     public void btnReportPhoneNumberClicked(){
         if(validateFields()){
             presenter.reportPhoneNumber(_editTextPhoneNumber.getText().toString(),_editTextDescription.getText().toString());
         }
     }
-
 }
-
-

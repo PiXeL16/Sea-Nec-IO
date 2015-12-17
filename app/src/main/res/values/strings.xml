@@ -4,4 +4,7 @@
     <string name="accept">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="error_text">Ooopps, an error occurred</string>
+
+    <string name="phone_number_required_text">Please add a phone number</string>
+    <string name="description_required_text">Please add a description</string>
 </resources>

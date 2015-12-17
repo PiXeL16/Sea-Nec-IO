@@ -46,6 +46,8 @@ public class  MainApp extends Application {
         Timber.plant(new Timber.DebugTree());
         //FireBase
         Firebase.setAndroidContext(this);
+        //Set local persistence
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
     }
 

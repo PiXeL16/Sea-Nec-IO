@@ -20,6 +20,8 @@ public class FirebaseProvider {
     @NonNull
     @Singleton
     public Firebase provideFirebase(){
-        return new Firebase(Constants.getFirebaseUrl());
+        Firebase firebase = new Firebase(Constants.getFirebaseUrl());
+        firebase.keepSynced(true);
+        return firebase;
     }
 }
