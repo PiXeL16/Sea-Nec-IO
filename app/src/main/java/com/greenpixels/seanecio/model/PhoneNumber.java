@@ -1,5 +1,7 @@
 package com.greenpixels.seanecio.model;
 
+import java.util.Date;
+
 /**
  * This class will represent the phoneNumber object in the DB
  * Used for reporting and checking blacklisted phone numbers
@@ -12,7 +14,11 @@ public class PhoneNumber {
     private String description;
     private boolean active;
     private String reportedBy;
+    private String createdAt;
 
+    /**
+     * Class contructors
+     */
     public PhoneNumber()
     {
 
@@ -23,12 +29,14 @@ public class PhoneNumber {
         this.description = description;
         this.active = active;
         this.reportedBy = reportedBy;
+        this.createdAt = new Date().toString();
     }
 
 
     public PhoneNumber(String phoneNumber, String description) {
         this.phoneNumber = phoneNumber;
         this.description = description;
+        this.createdAt = new Date().toString();
     }
 
 
@@ -62,5 +70,13 @@ public class PhoneNumber {
 
     public void setReportedBy(String reportedBy) {
         this.reportedBy = reportedBy;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }
