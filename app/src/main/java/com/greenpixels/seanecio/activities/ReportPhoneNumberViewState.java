@@ -13,6 +13,7 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
     final int STATE_SHOW_CONTENT = 0;
     final int STATE_SHOW_LOADING = 1;
     final int STATE_SHOW_ERROR = 2;
+    final int STATE_SHOW_SUCCEDED = 3;
 
     int state = STATE_SHOW_CONTENT;
 
@@ -49,6 +50,10 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
             case STATE_SHOW_CONTENT:
                 reportPhoneNumberView.showContent();
                 break;
+
+            case STATE_SHOW_SUCCEDED:
+                reportPhoneNumberView.showSucceded();
+                break;
         }
     }
 
@@ -62,6 +67,10 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
 
     public void setShowLoading() {
         state = STATE_SHOW_LOADING;
+    }
+
+    public void setShowSucceded() {
+        state = STATE_SHOW_SUCCEDED;
     }
 
 }

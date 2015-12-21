@@ -61,7 +61,7 @@ public class ReportPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumb
                 if (firebaseError != null) {
                    getView().showError(firebaseError.getMessage());
                 } else {
-                    getView().showContent();
+                    getView().showSucceded();
                 }
             }
         });

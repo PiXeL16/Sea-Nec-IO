@@ -110,8 +110,34 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
         vs.setShowContent();
 
+        //Clear the textboxes
+        _editTextPhoneNumber.setText("");
+        _editTextDescription.setText("");
+
         _btnReportPhoneNumber.setEnabled(true);
         _progressBar.setVisibility(View.GONE);
+
+    }
+
+    /**
+     * Show the succeded event when the number is reported
+     */
+    @Override
+    public void showSucceded() {
+
+        ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
+        vs.setShowSucceded();
+
+        //Clear the textboxes
+        _editTextPhoneNumber.setText("");
+        _editTextDescription.setText("");
+
+        _btnReportPhoneNumber.setEnabled(true);
+        _progressBar.setVisibility(View.GONE);
+
+        View parentLayout = findViewById(R.id.contentView);
+
+        AlertUtils.showSnackbar(parentLayout,getString(R.string.report_confirmation));
 
     }
 

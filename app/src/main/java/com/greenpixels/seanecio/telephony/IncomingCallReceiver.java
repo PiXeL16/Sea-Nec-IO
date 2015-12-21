@@ -16,13 +16,14 @@ import timber.log.Timber;
 
 public class IncomingCallReceiver extends BroadcastReceiver {
 
-    private Context mContext;
-    private Intent mIntent;
+    private Context _context;
+    private Intent _intent;
+    private PhoneNumberLocalPersistence _phoneNumberLocalPersistence = new PhoneNumberLocalPersistence();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        mContext = context;
-        mIntent = intent;
+        _context = context;
+        _intent = intent;
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         int events = PhoneStateListener.LISTEN_CALL_STATE;
         tm.listen(phoneStateListener, events);
@@ -37,27 +38,29 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                     callState = "IDLE";
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
+
+                    _phoneNumberLocalPersistence.saveLastPhoneCall(incomingNumber, _context);
                     // -- check international call or not.
-                    if (incomingNumber.startsWith("00")) {
-                        Toast.makeText(mContext, "International Call- " + incomingNumber, Toast.LENGTH_LONG).show();
-                        callState = "International - Ringing (" + incomingNumber+ ")";
-                    } else {
-                        Toast.makeText(mContext, "Local Call - " + incomingNumber, Toast.LENGTH_LONG).show();
-                        callState = "Local - Ringing (" + incomingNumber + ")";
-                    }
+//                    if (incomingNumber.startsWith("00")) {
+//                        Toast.makeText(_context, "International Call- " + incomingNumber, Toast.LENGTH_LONG).show();
+//                        callState = "International - Ringing (" + incomingNumber+ ")";
+//                    } else {
+//                        Toast.makeText(_context, "Local Call - " + incomingNumber, Toast.LENGTH_LONG).show();
+//                        callState = "Local - Ringing (" + incomingNumber + ")";
+//                    }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
-                    String dialingNumber = mIntent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+                    String dialingNumber = _intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
                     if (dialingNumber.startsWith("00")) {
-                        Toast.makeText(mContext,"International - " + dialingNumber,Toast.LENGTH_LONG).show();
+                        Toast.makeText(_context,"International - " + dialingNumber,Toast.LENGTH_LONG).show();
                         callState = "International - Dialing (" + dialingNumber+ ")";
                     } else {
-                        Toast.makeText(mContext, "Local Call - " + dialingNumber,Toast.LENGTH_LONG).show();
+                        Toast.makeText(_context, "Local Call - " + dialingNumber,Toast.LENGTH_LONG).show();
                         callState = "Local - Dialing (" + dialingNumber + ")";
                     }
                     break;
             }
-            Timber.i(">>>Broadcast", "onCallStateChanged " + callState);
+            Timber.d("onCallStateChanged " + callState);
             super.onCallStateChanged(state, incomingNumber);
         }
     };

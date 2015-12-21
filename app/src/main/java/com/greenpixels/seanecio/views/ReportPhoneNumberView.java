@@ -13,4 +13,6 @@ public interface ReportPhoneNumberView extends MvpView {
 
     public void showLoading();
 
+    public void showSucceded();
+
 }

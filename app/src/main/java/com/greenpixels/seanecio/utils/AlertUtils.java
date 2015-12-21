@@ -72,7 +72,7 @@ public class AlertUtils {
 
 
 	public static void showSnackbar(View view, String text){
-		Snackbar.make(view, text, Snackbar.LENGTH_INDEFINITE)
+		Snackbar.make(view, text, Snackbar.LENGTH_LONG)
 //				.setAction(R.string.snackbar_action_undo, clickListener)
 				.show();
 	}
