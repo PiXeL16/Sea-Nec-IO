@@ -9,7 +9,13 @@
     <string name="report_confirmation">Thanks for the help!</string>
 
     <!--Al reportar un numero ayudas a que  otras personas no tengan que pasar por lo que tu pasaste con esa llamada-->
-    <string name="report_phone_description">You help other by reporting a phone number so they do not have to go through what you went with that call.\nAfter others report that same number a couple of times it will be put live in the App</string>
+    <string name="report_phone_description">You can help others by reporting a phone number so they do not have to go through what you went with that call.\nAfter others report that same number a couple of times it will be put live in the App</string>
+
+
+    <string name="phone_number">Phone Number</string>
+    <string name="description">Description(Ej: Central Bank)</string>
+    <string name="use_last_phonecall">Use last phone call?</string>
+
     <string name="phone_number_required_text">Please add a phone number</string>
     <string name="description_required_text">Please add a description</string>
 </resources>

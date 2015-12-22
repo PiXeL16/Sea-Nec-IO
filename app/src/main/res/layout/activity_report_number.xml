@@ -81,22 +81,43 @@
             android:visibility="gone"
             />
 
-        <!-- Email Label -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="40dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_weight="3">
             <EditText android:id="@+id/edittext_phonenumber"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="phone"
-                      android:hint="Phone Number" />
+                      android:hint="@string/phone_number" />
+
+
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Password Label -->
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/use_last_phonecall"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:id="@+id/btnUseLastPhonecall"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,7 +127,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="text"
-                      android:hint="Description (Ej: Central Bank)"/>
+                      android:hint="@string/description"/>
         </android.support.design.widget.TextInputLayout>
 
 

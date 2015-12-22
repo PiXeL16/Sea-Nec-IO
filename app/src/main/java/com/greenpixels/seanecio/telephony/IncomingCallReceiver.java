@@ -39,7 +39,9 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
 
+                    //Save last phone for persistence
                     _phoneNumberLocalPersistence.saveLastPhoneCall(incomingNumber, _context);
+
                     // -- check international call or not.
 //                    if (incomingNumber.startsWith("00")) {
 //                        Toast.makeText(_context, "International Call- " + incomingNumber, Toast.LENGTH_LONG).show();
@@ -50,15 +52,15 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 //                    }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
-                    String dialingNumber = _intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                    if (dialingNumber.startsWith("00")) {
-                        Toast.makeText(_context,"International - " + dialingNumber,Toast.LENGTH_LONG).show();
-                        callState = "International - Dialing (" + dialingNumber+ ")";
-                    } else {
-                        Toast.makeText(_context, "Local Call - " + dialingNumber,Toast.LENGTH_LONG).show();
-                        callState = "Local - Dialing (" + dialingNumber + ")";
-                    }
-                    break;
+//                    String dialingNumber = _intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+//                    if (dialingNumber.startsWith("00")) {
+//                        Toast.makeText(_context,"International - " + dialingNumber,Toast.LENGTH_LONG).show();
+//                        callState = "International - Dialing (" + dialingNumber+ ")";
+//                    } else {
+//                        Toast.makeText(_context, "Local Call - " + dialingNumber,Toast.LENGTH_LONG).show();
+//                        callState = "Local - Dialing (" + dialingNumber + ")";
+//                    }
+//                    break;
             }
             Timber.d("onCallStateChanged " + callState);
             super.onCallStateChanged(state, incomingNumber);

@@ -17,6 +17,7 @@ import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
 import com.greenpixels.seanecio.presenters.ReportPhoneNumberPresenter;
+import com.greenpixels.seanecio.telephony.PhoneNumberLocalPersistence;
 import com.greenpixels.seanecio.utils.AlertUtils;
 import com.greenpixels.seanecio.utils.StringUtils;
 import com.greenpixels.seanecio.views.ReportPhoneNumberView;
@@ -131,6 +132,8 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         //Clear the textboxes
         _editTextPhoneNumber.setText("");
         _editTextDescription.setText("");
+        _editTextPhoneNumber.clearFocus();
+        _editTextDescription.clearFocus();
 
         _btnReportPhoneNumber.setEnabled(true);
         _progressBar.setVisibility(View.GONE);
@@ -203,4 +206,12 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
             presenter.reportPhoneNumber(_editTextPhoneNumber.getText().toString(),_editTextDescription.getText().toString());
         }
     }
+
+    @OnClick(R.id.btnUseLastPhonecall)
+    public void btnUseLastPhonecallClicked()
+    {
+        PhoneNumberLocalPersistence persistence =  new PhoneNumberLocalPersistence();
+        this._editTextPhoneNumber.setText(persistence.getLastPhoneCallNumber(this));
+    }
+
 }
