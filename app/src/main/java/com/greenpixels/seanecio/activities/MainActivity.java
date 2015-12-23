@@ -17,7 +17,7 @@ import com.greenpixels.seanecio.general_classes.MainApp;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
-import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberPresenter;
+import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberListPresenter;
 import com.greenpixels.seanecio.view_states.ReportPhoneNumberViewState;
 import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
@@ -25,7 +25,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 import butterknife.Bind;
 
-public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView, BlacklistedPhoneNumberPresenter> implements BlacklistedPhoneNumberListView {
+public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView, BlacklistedPhoneNumberListPresenter> implements BlacklistedPhoneNumberListView {
 
     @Bind(R.id.toolbar)
     Toolbar _toolbar;
@@ -77,7 +77,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
      */
     @NonNull
     @Override
-    public BlacklistedPhoneNumberPresenter createPresenter() {
+    public BlacklistedPhoneNumberListPresenter createPresenter() {
         return _component.presenter();
     }
 

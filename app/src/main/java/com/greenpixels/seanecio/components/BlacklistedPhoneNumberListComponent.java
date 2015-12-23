@@ -4,7 +4,7 @@ import com.greenpixels.seanecio.activities.MainActivity;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
-import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberPresenter;
+import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberListPresenter;
 
 import javax.inject.Singleton;
 
@@ -22,5 +22,5 @@ public interface BlacklistedPhoneNumberListComponent {
 
     void inject(MainActivity activity);
 
-    BlacklistedPhoneNumberPresenter presenter();
+    BlacklistedPhoneNumberListPresenter presenter();
 }

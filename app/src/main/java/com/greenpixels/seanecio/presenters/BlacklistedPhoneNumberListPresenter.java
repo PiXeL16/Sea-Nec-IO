@@ -11,13 +11,13 @@ import de.greenrobot.event.EventBus;
 /**
  * Presenter for the blacklisted phone number activity (main activity)
  */
-public class BlacklistedPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumberView> {
+public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<ReportPhoneNumberView> {
 
     private EventBus _eventBus;
     private Firebase _firebase;
 
     @Inject
-    public BlacklistedPhoneNumberPresenter(EventBus eventBus, Firebase firebase) {
+    public BlacklistedPhoneNumberListPresenter(EventBus eventBus, Firebase firebase) {
         _eventBus = eventBus;
         _firebase = firebase;
     }
