@@ -1,25 +1,24 @@
-package com.greenpixels.seanecio.activities;
+package com.greenpixels.seanecio.view_states;
 
 import android.os.Bundle;
 
-import com.greenpixels.seanecio.views.ReportPhoneNumberView;
+import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 /**
- * View state for the status of the report phone number activity
+ * Created by chris on 12/23/15.
  */
-public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPhoneNumberView> {
+public class BlacklistedPhoneNumberListViewState implements RestoreableViewState<BlacklistedPhoneNumberListView> {
 
     final int STATE_SHOW_CONTENT = 0;
     final int STATE_SHOW_LOADING = 1;
     final int STATE_SHOW_ERROR = 2;
-    final int STATE_SHOW_SUCCEDED = 3;
 
     int state = STATE_SHOW_CONTENT;
 
     private String _error;
 
-    public ReportPhoneNumberViewState() {
+    public BlacklistedPhoneNumberListViewState() {
     }
 
     public void setError(String error) {
@@ -32,12 +31,12 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
     }
 
     @Override
-    public RestoreableViewState<ReportPhoneNumberView> restoreInstanceState(Bundle bundle) {
+    public RestoreableViewState<BlacklistedPhoneNumberListView> restoreInstanceState(Bundle bundle) {
         return null;
     }
 
     @Override
-    public void apply(ReportPhoneNumberView reportPhoneNumberView, boolean b) {
+    public void apply(BlacklistedPhoneNumberListView reportPhoneNumberView, boolean b) {
         switch (state) {
             case STATE_SHOW_LOADING:
                 reportPhoneNumberView.showLoading();
@@ -51,9 +50,6 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
                 reportPhoneNumberView.showContent();
                 break;
 
-            case STATE_SHOW_SUCCEDED:
-                reportPhoneNumberView.showSucceded();
-                break;
         }
     }
 
@@ -67,10 +63,6 @@ public class ReportPhoneNumberViewState implements RestoreableViewState<ReportPh
 
     public void setShowLoading() {
         state = STATE_SHOW_LOADING;
-    }
-
-    public void setShowSucceded() {
-        state = STATE_SHOW_SUCCEDED;
     }
 
 }

@@ -10,8 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.greenpixels.seanecio.R;
+import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberPresenter;
+import com.greenpixels.seanecio.presenters.ReportPhoneNumberPresenter;
+import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
+import com.greenpixels.seanecio.views.ReportPhoneNumberView;
+import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView, BlacklistedPhoneNumberPresenter> implements BlacklistedPhoneNumberListView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -20,6 +19,7 @@ import com.greenpixels.seanecio.presenters.ReportPhoneNumberPresenter;
 import com.greenpixels.seanecio.telephony.PhoneNumberLocalPersistence;
 import com.greenpixels.seanecio.utils.AlertUtils;
 import com.greenpixels.seanecio.utils.StringUtils;
+import com.greenpixels.seanecio.view_states.ReportPhoneNumberViewState;
 import com.greenpixels.seanecio.views.ReportPhoneNumberView;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;

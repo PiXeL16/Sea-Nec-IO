@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:paddingLeft="@dimen/list_item_padding_left_right"
+                android:paddingRight="@dimen/list_item_padding_left_right"
+                android:paddingTop="@dimen/list_item_padding_top_bottom"
+                android:paddingBottom="@dimen/list_item_padding_top_bottom"
+    >
+
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/list_item_name_text_size"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_alignParentTop="true"
+        android:maxLines="1"
+        android:layout_marginBottom="2dp"
+        android:ellipsize="end"
+        tools:text="Bac San Jose Credito"
+        />
+
+
+    <TextView
+        android:id="@+id/scientific_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/colorSecondaryText"
+        android:layout_below="@+id/name"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="+434234545"
+        />
+
+</RelativeLayout>
