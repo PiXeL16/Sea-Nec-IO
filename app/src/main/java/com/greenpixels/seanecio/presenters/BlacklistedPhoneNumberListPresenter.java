@@ -1,7 +1,7 @@
 package com.greenpixels.seanecio.presenters;
 
 import com.firebase.client.Firebase;
-import com.greenpixels.seanecio.views.ReportPhoneNumberView;
+import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Presenter for the blacklisted phone number activity (main activity)
  */
-public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<ReportPhoneNumberView> {
+public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<BlacklistedPhoneNumberListView> {
 
     private EventBus _eventBus;
     private Firebase _firebase;
@@ -23,7 +23,7 @@ public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<Report
     }
 
     @Override
-    public void attachView(ReportPhoneNumberView reportView){
+    public void attachView(BlacklistedPhoneNumberListView reportView){
         super.attachView(reportView);
 //        _eventBus.register(this);
     }

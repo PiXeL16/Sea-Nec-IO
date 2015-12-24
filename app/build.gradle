@@ -53,6 +53,10 @@ dependencies {
     compile "com.hannesdorfmann.mosby:retrofit:$MOSBY_VERSION"
     compile "com.hannesdorfmann.mosby:viewstate:$MOSBY_VERSION"
     compile "com.hannesdorfmann.mosby:rx:$MOSBY_VERSION"
+    //Adapter
+    apt 'com.hannesdorfmann.annotatedadapter:processor:1.0.0'
+    compile 'com.hannesdorfmann.annotatedadapter:annotation:1.0.0'
+    compile 'com.hannesdorfmann.annotatedadapter:support-recyclerview:1.0.0'
     //Annotations
     apt 'frankiesardo:icepick-processor:3.0.2'
     apt 'com.hannesdorfmann.fragmentargs:processor:2.1.2'

@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -24,8 +23,9 @@ import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
-public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView, BlacklistedPhoneNumberListPresenter> implements BlacklistedPhoneNumberListView {
+public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView,BlacklistedPhoneNumberListPresenter> implements BlacklistedPhoneNumberListView {
 
     @Bind(R.id.toolbar)
     Toolbar _toolbar;
@@ -58,16 +58,6 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(_toolbar);
-
-        _fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, ReportPhoneNumberActivity.class);
-                startActivity(intent);
-
-            }
-        });
     }
 
 
@@ -114,6 +104,14 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 //
 //        _btnReportPhoneNumber.setEnabled(true);
 //        _progressBar.setVisibility(View.GONE);
+
+    }
+
+    @OnClick(R.id.fab)
+    public void fabClicked(){
+
+        Intent intent = new Intent(MainActivity.this, ReportPhoneNumberActivity.class);
+        startActivity(intent);
 
     }
 
