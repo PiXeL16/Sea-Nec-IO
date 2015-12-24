@@ -1,79 +1,44 @@
 package com.greenpixels.seanecio.adapters;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
-import com.greenpixels.seanecio.R;
+import com.firebase.client.Firebase;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
-import com.hannesdorfmann.annotatedadapter.annotation.Field;
-import com.hannesdorfmann.annotatedadapter.annotation.ViewType;
-import com.hannesdorfmann.annotatedadapter.support.recyclerview.SupportAnnotatedAdapter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 /**
- * Created by chris on 12/24/15.
+ * Adapter for the blacklisted
  */
-public class BlacklistedPhoneNumberAdapter extends SupportAnnotatedAdapter implements BlacklistedPhoneNumberAdapterBinder {
-
-    @ViewType(
-            layout = R.layout.blacklisted_number_item,
-            fields = {
-                    @Field(
-                            id = R.id.blacklisted_description,
-                            name = "blacklisted_description",
-                            type = TextView.class),
-                    @Field(
-                            id = R.id.blacklisted_number,
-                            name = "blacklisted_number",
-                            type = TextView.class)
-            }) public final int VIEWTYPE_BLACKLISTED_NUMBER = 0;
-
-
-    private List<BlacklistedPhoneNumber> _blacklistedPhoneNumbers;
-
-    public List<BlacklistedPhoneNumber> getBlacklistedPhoneNumbers() {
-        return _blacklistedPhoneNumbers;
-    }
-
-    public void setBlacklistedPhoneNumbers(List<BlacklistedPhoneNumber> blacklistedPhoneNumbers) {
-        _blacklistedPhoneNumbers = blacklistedPhoneNumbers;
-    }
+public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<BlacklistedPhoneNumber, BlacklistedPhoneNumberAdapter.BlacklistedPhoneNumberViewHolder> {
 
     @Inject
-    public BlacklistedPhoneNumberAdapter(Context context)
-    {
-        super(context);
+    public BlacklistedPhoneNumberAdapter(Firebase ref) {
+        super(BlacklistedPhoneNumber.class, android.R.layout.two_line_list_item, BlacklistedPhoneNumberViewHolder.class, ref.child(BlacklistedPhoneNumber.collectionName));
     }
 
     @Override
-    public int getItemCount() {
-        return _blacklistedPhoneNumbers == null ? 0 : _blacklistedPhoneNumbers.size();
+    public void populateViewHolder(BlacklistedPhoneNumberViewHolder viewHolder, BlacklistedPhoneNumber blacklistedPhoneNumber, int position) {
+        viewHolder.blacklistedDescription.setText(blacklistedPhoneNumber.getDescription());
+        viewHolder.blacklistedPhoneNumber.setText(blacklistedPhoneNumber.getPhoneNumber());
     }
 
-    @Override
-    public void bindViewHolder(BlacklistedPhoneNumberAdapterHolders.VIEWTYPE_BLACKLISTED_NUMBERViewHolder vh, int position) {
-        BlacklistedPhoneNumber blacklistedPhoneNumber =  _blacklistedPhoneNumbers.get(position);
 
+    /**
+     * ViewHolder for the BlacklistedPhoneNumberActivity
+     */
+     static class BlacklistedPhoneNumberViewHolder extends RecyclerView.ViewHolder {
 
-        vh.blacklisted_description.setText(blacklistedPhoneNumber.getDescription());
-        vh.blacklisted_number.setText(blacklistedPhoneNumber.getPhoneNumber());
+        TextView blacklistedDescription;
+        TextView blacklistedPhoneNumber;
 
-//        vh.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Context context = view.getContext();
-//                Intent intent = new Intent(context, BirdDetailActivity.class);
-//                // intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
-//
-//                context.startActivity(intent);
-//
-//            }
-//        });
-
+        public BlacklistedPhoneNumberViewHolder(View itemView) {
+            super(itemView);
+            blacklistedDescription = (TextView)itemView.findViewById(android.R.id.text1);
+            blacklistedPhoneNumber = (TextView) itemView.findViewById(android.R.id.text2);
+        }
     }
-
 }

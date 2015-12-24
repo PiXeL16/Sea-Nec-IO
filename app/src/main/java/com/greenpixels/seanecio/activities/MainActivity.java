@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.greenpixels.seanecio.R;
+import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.BlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.components.DaggerBlacklistedPhoneNumberListComponent;
@@ -33,7 +36,12 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     @Bind(R.id.fab)
     FloatingActionButton _fab;
 
+    @Bind(R.id.recyclerView)
+    RecyclerView _recyclerView;
+
     private BlacklistedPhoneNumberListComponent _component;
+
+    private BlacklistedPhoneNumberAdapter _adapter;
 
     /**
      * Inject the dependencies in the activity
@@ -58,6 +66,13 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(_toolbar);
+
+        _adapter = _component.adapter();
+
+        _recyclerView.setAdapter(_adapter);
+
+        _recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
@@ -70,7 +85,6 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     public BlacklistedPhoneNumberListPresenter createPresenter() {
         return _component.presenter();
     }
-
 
     @Override
     public void onNewViewStateInstance() {
@@ -156,4 +170,5 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
         return super.onOptionsItemSelected(item);
     }
+
 }

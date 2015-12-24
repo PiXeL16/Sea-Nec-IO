@@ -1,5 +1,7 @@
 package com.greenpixels.seanecio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Blacklisted Phone Number model representation
  */
@@ -7,62 +9,58 @@ public class BlacklistedPhoneNumber {
 
     public static final String collectionName = "blacklistedPhoneNumbers";
 
-    private String _phoneNumber;
-    private String _description;
-    private boolean _active;
-    private String _reportedBy;
-    private String _createdAt;
+    private String phoneNumber;
+    private String description;
+    private boolean active;
+//    private String _reportedBy;
+    private String createdAt;
 
-    public BlacklistedPhoneNumber(String phoneNumber, String description, boolean active, String reportedBy, String createdAt) {
-        _phoneNumber = phoneNumber;
-        _description = description;
-        _active = active;
-        _reportedBy = reportedBy;
-        _createdAt = createdAt;
+    public BlacklistedPhoneNumber(String phoneNumber, String description,boolean active, String createdAt) {
+        this.phoneNumber = phoneNumber;
+        this.description = description;
+        this.active = active;
+//        _reportedBy = reportedBy;
+        this.createdAt = createdAt;
     }
 
-
-    public static String getCollectionName() {
-        return collectionName;
-    }
 
     public String getPhoneNumber() {
-        return _phoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        _phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDescription() {
-        return _description;
+        return description;
     }
 
     public void setDescription(String description) {
-        _description = description;
+        this.description = description;
     }
 
-    public boolean isActive() {
-        return _active;
+    public boolean getActive() {
+        return active;
     }
 
     public void setActive(boolean active) {
-        _active = active;
+        this.active = active;
     }
 
-    public String getReportedBy() {
-        return _reportedBy;
-    }
-
-    public void setReportedBy(String reportedBy) {
-        _reportedBy = reportedBy;
-    }
+//    public String getReportedBy() {
+//        return _reportedBy;
+//    }
+//
+//    public void setReportedBy(String reportedBy) {
+//        _reportedBy = reportedBy;
+//    }
 
     public String getCreatedAt() {
-        return _createdAt;
+        return createdAt;
     }
 
     public void setCreatedAt(String createdAt) {
-        _createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 }
