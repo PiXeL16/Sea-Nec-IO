@@ -12,16 +12,8 @@ public class BlacklistedPhoneNumber {
     private String phoneNumber;
     private String description;
     private boolean active;
-//    private String _reportedBy;
+    private String _reportedBy;
     private String createdAt;
-
-    public BlacklistedPhoneNumber(String phoneNumber, String description,boolean active, String createdAt) {
-        this.phoneNumber = phoneNumber;
-        this.description = description;
-        this.active = active;
-//        _reportedBy = reportedBy;
-        this.createdAt = createdAt;
-    }
 
 
     public String getPhoneNumber() {
@@ -48,13 +40,13 @@ public class BlacklistedPhoneNumber {
         this.active = active;
     }
 
-//    public String getReportedBy() {
-//        return _reportedBy;
-//    }
-//
-//    public void setReportedBy(String reportedBy) {
-//        _reportedBy = reportedBy;
-//    }
+    public String getReportedBy() {
+        return _reportedBy;
+    }
+
+    public void setReportedBy(String reportedBy) {
+        _reportedBy = reportedBy;
+    }
 
     public String getCreatedAt() {
         return createdAt;

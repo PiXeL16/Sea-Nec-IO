@@ -7,15 +7,21 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.style.TtsSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.BlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.components.DaggerBlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.general_classes.MainApp;
+import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
@@ -27,6 +33,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberListView,BlacklistedPhoneNumberListPresenter> implements BlacklistedPhoneNumberListView {
 
@@ -42,6 +49,8 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     private BlacklistedPhoneNumberListComponent _component;
 
     private BlacklistedPhoneNumberAdapter _adapter;
+
+    private Firebase _firebase;
 
     /**
      * Inject the dependencies in the activity
@@ -72,6 +81,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         _recyclerView.setAdapter(_adapter);
 
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 
