@@ -10,4 +10,6 @@ public class Constants {
     public static String getFirebaseUrl() {
         return FIREBASE_URL;
     }
+
+    public static String getDefaultCountryCode(){return "CR";}
 }
