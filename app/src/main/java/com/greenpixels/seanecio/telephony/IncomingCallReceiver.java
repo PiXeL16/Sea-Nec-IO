@@ -45,7 +45,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
     }
 
     /**
-     * Phone State listener to get phonecall informacion and numbers
+     * Phone State listener to get phone call information and numbers
      */
     private final PhoneStateListener phoneStateListener = new PhoneStateListener() {
         @Override
