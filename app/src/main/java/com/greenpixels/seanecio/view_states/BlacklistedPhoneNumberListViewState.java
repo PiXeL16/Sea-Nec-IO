@@ -7,6 +7,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 /**
  * Created by chris on 12/23/15.
+ * View state for the blacklisted phone number activity. Not used at the momment
  */
 public class BlacklistedPhoneNumberListViewState implements RestoreableViewState<BlacklistedPhoneNumberListView> {
 

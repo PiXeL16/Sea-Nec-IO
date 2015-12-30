@@ -3,8 +3,7 @@ package com.greenpixels.seanecio.model;
 import java.util.Date;
 
 /**
- * This class will represent the _phoneNumber object in the DB
- * Used for reporting and checking blacklisted phone numbers
+ * Report phone number model representation
  */
 public class PhoneNumber {
 
@@ -20,11 +19,6 @@ public class PhoneNumber {
     /**
      * Class contructors
      */
-    public PhoneNumber()
-    {
-
-    }
-
     public PhoneNumber(String phoneNumber, String description, boolean active, String reportedBy, boolean isBlacklisted) {
         this._phoneNumber = phoneNumber;
         this._description = description;

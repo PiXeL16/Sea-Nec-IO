@@ -3,7 +3,7 @@ package com.greenpixels.seanecio.views;
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
 /**
- * Created by chris on 12/15/15.
+ * View intergace for the report phone number activity
  */
 public interface ReportPhoneNumberView extends MvpView {
 

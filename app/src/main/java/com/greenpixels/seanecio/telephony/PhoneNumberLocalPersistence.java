@@ -13,7 +13,12 @@ public class PhoneNumberLocalPersistence {
     private static final String PREFS_NAME = "SeaNecioPrefName";
     private static final String lastCallPrefKey = "lastCall";
 
-    public void saveLastPhoneCall(String phoneNumber, Context cont)
+    /**
+     * Save the phonenumber to local storage
+     * @param phoneNumber
+     * @param cont
+     */
+    public void saveLastPhoneNumber(String phoneNumber, Context cont)
     {
         SharedPreferences settings = cont.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -23,7 +28,12 @@ public class PhoneNumberLocalPersistence {
         editor.commit();
     }
 
-    public String getLastPhoneCallNumber(Context cont)
+    /**
+     * Get the phone number information from local storage
+     * @param cont
+     * @return
+     */
+    public String getLastPhoneNumber(Context cont)
     {
         // Restore preferences
         SharedPreferences settings = cont.getSharedPreferences(PREFS_NAME, 0);

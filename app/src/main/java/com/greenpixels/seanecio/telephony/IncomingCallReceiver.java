@@ -9,7 +9,6 @@ import android.telephony.TelephonyManager;
 import timber.log.Timber;
 
 /**
- * Created by chris on 12/14/15.
  * The class will track incoming calls and show notifications or store the last number to be suggested when reporting a phone number
  */
 
@@ -17,8 +16,16 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 
     private Context _context;
     private Intent _intent;
+    /**
+     * Local persistence of the number, to be able to show suggestions when reporting a phone number
+     */
     private PhoneNumberLocalPersistence _phoneNumberLocalPersistence = new PhoneNumberLocalPersistence();
 
+    /**
+     * When a phone call is receive we hook up a phone state listener.
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         _context = context;
@@ -28,6 +35,9 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         tm.listen(phoneStateListener, events);
     }
 
+    /**
+     * Phone State listener to get phonecall informacion and numbers
+     */
     private final PhoneStateListener phoneStateListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
@@ -39,7 +49,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                 case TelephonyManager.CALL_STATE_RINGING:
 
                     //Save last phone for persistence
-                    _phoneNumberLocalPersistence.saveLastPhoneCall(incomingNumber, _context);
+                    _phoneNumberLocalPersistence.saveLastPhoneNumber(incomingNumber, _context);
 
                     // -- check international call or not.
 //                    if (incomingNumber.startsWith("00")) {

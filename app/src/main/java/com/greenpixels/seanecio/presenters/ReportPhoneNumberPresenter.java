@@ -66,17 +66,4 @@ public class ReportPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumb
             }
         });
     }
-
-//    public void onEvent(LoginSuccessEvent event){
-//        getView().loginSuccessful(event.getUser());
-//    }
-//
-//    public void onEvent(LoginErrorEvent event){
-//        getView().showError(event.getRestMessage());
-//    }
-//
-//    public void onEvent(AlertDialogPushEvent event){
-//        getView().showDialogPush(event.getTitle(), event.getAlert());
-//    }
-
 }

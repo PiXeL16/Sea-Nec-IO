@@ -3,7 +3,7 @@ package com.greenpixels.seanecio.views;
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
 /**
- * Created by chris on 12/23/15.
+ * View interface for the blacklisted phone number list
  */
 public interface BlacklistedPhoneNumberListView extends MvpView {
 

@@ -1,7 +1,5 @@
 package com.greenpixels.seanecio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
  * Blacklisted Phone Number model representation
  */

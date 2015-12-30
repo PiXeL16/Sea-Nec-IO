@@ -211,7 +211,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     public void btnUseLastPhonecallClicked()
     {
         PhoneNumberLocalPersistence persistence =  new PhoneNumberLocalPersistence();
-        this._editTextPhoneNumber.setText(persistence.getLastPhoneCallNumber(this));
+        this._editTextPhoneNumber.setText(persistence.getLastPhoneNumber(this));
     }
 
 }

@@ -16,6 +16,7 @@ import timber.log.Timber;
 
 /**
  * Presenter for the blacklisted phone number activity (main activity)
+ * Not used since its done with the firebase adapter
  */
 public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<BlacklistedPhoneNumberListView> {
 

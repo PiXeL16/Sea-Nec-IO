@@ -11,7 +11,7 @@ import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
 import javax.inject.Inject;
 
 /**
- * Adapter for the blacklisted
+ * Adapter for the blacklisted using the firebase recycle adapter functionality
  */
 public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<BlacklistedPhoneNumber, BlacklistedPhoneNumberAdapter.BlacklistedPhoneNumberViewHolder> {
 
