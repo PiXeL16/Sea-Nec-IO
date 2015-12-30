@@ -5,6 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
+import com.greenpixels.seanecio.general_classes.Constants;
+import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
 
 import timber.log.Timber;
 
@@ -44,36 +53,66 @@ public class IncomingCallReceiver extends BroadcastReceiver {
             String callState = "UNKNOWN";
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
-                    callState = "IDLE";
+
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
 
                     //Save last phone for persistence
                     _phoneNumberLocalPersistence.saveLastPhoneNumber(incomingNumber, _context);
 
-                    // -- check international call or not.
-//                    if (incomingNumber.startsWith("00")) {
-//                        Toast.makeText(_context, "International Call- " + incomingNumber, Toast.LENGTH_LONG).show();
-//                        callState = "International - Ringing (" + incomingNumber+ ")";
-//                    } else {
-//                        Toast.makeText(_context, "Local Call - " + incomingNumber, Toast.LENGTH_LONG).show();
-//                        callState = "Local - Ringing (" + incomingNumber + ")";
-//                    }
+                    checkAndAlertBlacklistedPhoneNumber(incomingNumber);
+
+
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
-//                    String dialingNumber = _intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-//                    if (dialingNumber.startsWith("00")) {
-//                        Toast.makeText(_context,"International - " + dialingNumber,Toast.LENGTH_LONG).show();
-//                        callState = "International - Dialing (" + dialingNumber+ ")";
-//                    } else {
-//                        Toast.makeText(_context, "Local Call - " + dialingNumber,Toast.LENGTH_LONG).show();
-//                        callState = "Local - Dialing (" + dialingNumber + ")";
-//                    }
-//                    break;
+
+                    break;
             }
-            Timber.d("onCallStateChanged " + callState);
             super.onCallStateChanged(state, incomingNumber);
         }
     };
+
+
+    /**
+     * Checks and shows an alert from if it founds that the calls belongs to a blacklisted phone number
+     * @param phoneNumber
+     */
+    private final void checkAndAlertBlacklistedPhoneNumber(String phoneNumber)
+    {
+        //Strips the incoming phone number from country code and digits
+        String stripedPhoneNumber = PhoneNumberUtils.stripCountryCodeFromPhoneNumber(phoneNumber, Constants.getDefaultCountryCode());
+
+        //Creates the firebase ref: TODO: This should be injected
+        Firebase ref = new Firebase(Constants.getFirebaseUrl());
+        ref.keepSynced(true);
+
+        //Creates teh query where the blacklisted phone number is equal to the one we get
+        Query queryRef = ref.child(BlacklistedPhoneNumber.collectionName).orderByChild("phoneNumber").equalTo(stripedPhoneNumber);
+
+        //Add a listener
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //A blacklisted phone number was found
+               if(dataSnapshot.hasChildren()){
+
+                   //Parse the data
+                   BlacklistedPhoneNumber blacklistedPhoneNumber = dataSnapshot.getValue(BlacklistedPhoneNumber.class);
+                   //Creates the message
+                   String message = String.format("Sea Necio!: %s", blacklistedPhoneNumber.getDescription());
+                   //Shows the message :TODO: this will change to some nicer format instead of a toast
+                   Toast.makeText(_context,message,Toast.LENGTH_LONG);
+
+               }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Timber.i(firebaseError.getMessage());
+            }
+        });
+
+    }
+
 
 }

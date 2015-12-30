@@ -22,4 +22,13 @@ public class PhoneNumberUtilsTests {
 
         assertEquals(result,"60511010");
     }
+
+
+    @Test
+    public void testStripCountryCodeWithErrors() throws Exception {
+
+        String result = PhoneNumberUtils.stripCountryCodeFromPhoneNumber("+151-10-10", "CR");
+
+        assertEquals(result,"511010");
+    }
 }
