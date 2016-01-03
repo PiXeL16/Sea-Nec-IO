@@ -2,6 +2,7 @@ package com.greenpixels.seanecio.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
@@ -24,6 +25,13 @@ public class AlertUtils {
 	/**Toast dialog with string */
 	public static void showToast(final String message,final Activity activity) {
 		final Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.BOTTOM, 0, 0);
+		toast.show();
+	}
+
+	/**Toast dialog with string */
+	public static void showToast(final String message,final Context context) {
+		final Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.BOTTOM, 0, 0);
 		toast.show();
 	}

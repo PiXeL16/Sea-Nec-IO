@@ -55,6 +55,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/contentView"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_padding"
@@ -110,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/use_last_phonecall"
+                android:padding="5dp"
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 android:id="@+id/btnUseLastPhonecall"

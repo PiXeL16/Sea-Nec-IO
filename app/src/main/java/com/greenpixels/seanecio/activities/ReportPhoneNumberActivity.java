@@ -203,6 +203,8 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     @OnClick(R.id.btn_report_phonenumber)
     public void btnReportPhoneNumberClicked(){
         if(validateFields()){
+            _editTextPhoneNumber.clearFocus();
+            _editTextDescription.clearFocus();
             presenter.reportPhoneNumber(_editTextPhoneNumber.getText().toString(),_editTextDescription.getText().toString());
         }
     }

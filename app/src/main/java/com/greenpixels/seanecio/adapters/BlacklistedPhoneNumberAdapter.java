@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseRecyclerAdapter;
+import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
 
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<Black
 
     @Inject
     public BlacklistedPhoneNumberAdapter(Firebase ref) {
-        super(BlacklistedPhoneNumber.class, android.R.layout.two_line_list_item, BlacklistedPhoneNumberViewHolder.class, ref.child(BlacklistedPhoneNumber.collectionName));
+        super(BlacklistedPhoneNumber.class, R.layout.blacklisted_number_item, BlacklistedPhoneNumberViewHolder.class, ref.child(BlacklistedPhoneNumber.collectionName));
     }
 
     @Override
@@ -37,8 +38,8 @@ public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<Black
 
         public BlacklistedPhoneNumberViewHolder(View itemView) {
             super(itemView);
-            blacklistedDescription = (TextView)itemView.findViewById(android.R.id.text1);
-            blacklistedPhoneNumber = (TextView) itemView.findViewById(android.R.id.text2);
+            blacklistedDescription = (TextView)itemView.findViewById(R.id.blacklisted_description);
+            blacklistedPhoneNumber = (TextView) itemView.findViewById(R.id.blacklisted_number);
         }
     }
 }

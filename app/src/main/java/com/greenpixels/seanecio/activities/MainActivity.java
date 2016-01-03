@@ -47,8 +47,6 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
     private BlacklistedPhoneNumberAdapter _adapter;
 
-    private Firebase _firebase;
-
     /**
      * Inject the dependencies in the activity
      */
@@ -78,7 +76,6 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         _recyclerView.setAdapter(_adapter);
 
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
     }
 

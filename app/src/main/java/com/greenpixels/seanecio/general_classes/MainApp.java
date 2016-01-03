@@ -41,7 +41,7 @@ public class  MainApp extends Application {
     public void init() {
 
         //Leak Tracking
-        refWatcher = LeakCanary.install(this);
+//        refWatcher = LeakCanary.install(this);
         //Logging
         Timber.plant(new Timber.DebugTree());
         //FireBase

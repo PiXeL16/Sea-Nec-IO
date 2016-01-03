@@ -12,8 +12,11 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
+import com.greenpixels.seanecio.utils.AlertUtils;
+import com.greenpixels.seanecio.utils.NotificationUtils;
 
 import timber.log.Timber;
 
@@ -86,8 +89,10 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         Firebase ref = new Firebase(Constants.getFirebaseUrl());
         ref.keepSynced(true);
 
+        Timber.i("Checking for blacklisted phone number");
+
         //Creates teh query where the blacklisted phone number is equal to the one we get
-        Query queryRef = ref.child(BlacklistedPhoneNumber.collectionName).orderByChild("phoneNumber").equalTo(stripedPhoneNumber);
+        Query queryRef = ref.child(BlacklistedPhoneNumber.collectionName).orderByKey().equalTo(stripedPhoneNumber);
 
         //Add a listener
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -96,12 +101,21 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                 //A blacklisted phone number was found
                if(dataSnapshot.hasChildren()){
 
-                   //Parse the data
-                   BlacklistedPhoneNumber blacklistedPhoneNumber = dataSnapshot.getValue(BlacklistedPhoneNumber.class);
-                   //Creates the message
-                   String message = String.format("Sea Necio!: %s", blacklistedPhoneNumber.getDescription());
-                   //Shows the message :TODO: this will change to some nicer format instead of a toast
-                   Toast.makeText(_context,message,Toast.LENGTH_LONG);
+                   for (DataSnapshot child : dataSnapshot.getChildren()) {
+
+                       Timber.i("Found blacklisted number");
+
+                       //Parse the data
+                       BlacklistedPhoneNumber blacklistedPhoneNumber = child.getValue(BlacklistedPhoneNumber.class);
+                       //Creates the message
+                       String message = String.format("Sea Necio!: %s", blacklistedPhoneNumber.getDescription());
+
+                       Timber.i(message);
+                       //Shows the message :TODO: this will change to some nicer format instead of a toast
+                       AlertUtils.showToast(message, _context);
+                       //Shows notification
+                       NotificationUtils.showLocalNotification(message,_context.getString(R.string.app_name),R.drawable.small_notification_icon,_context);
+                   }
 
                }
             }
