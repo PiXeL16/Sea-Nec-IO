@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorPrimaryDark"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:paddingLeft="@dimen/list_item_padding_left_right"
+              android:paddingRight="@dimen/list_item_padding_left_right"
+              android:paddingTop="@dimen/list_item_padding_top_bottom"
+              android:paddingBottom="@dimen/list_item_padding_top_bottom"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:id="@+id/container"
+
+
+    >
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/toast_icon"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/ic_launcher"/>
+
+
+    <TextView
+        android:id="@+id/toast_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Sea Necio! Banco Central"
+        />
+
+</LinearLayout>

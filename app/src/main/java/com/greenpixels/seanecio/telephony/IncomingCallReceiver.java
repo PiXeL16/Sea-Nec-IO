@@ -112,9 +112,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 
                        Timber.i(message);
                        //Shows the message :TODO: this will change to some nicer format instead of a toast
-                       AlertUtils.showToast(message, _context);
-                       //Shows notification
-                       NotificationUtils.showLocalNotification(message,_context.getString(R.string.app_name),R.drawable.small_notification_icon,_context);
+                       CallNotificationHelper.showCallNotification(message,_context);
                    }
 
                }
