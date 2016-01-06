@@ -165,7 +165,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
-            CallNotificationHelper.showCallNotification("test test test",this);
+//            CallNotificationHelper.showCallNotification("test test test",this);
             return true;
         }
 
