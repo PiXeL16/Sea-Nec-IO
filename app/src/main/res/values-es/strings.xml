@@ -6,6 +6,6 @@
     <string name="phone_number">Número de Teléfono</string>
     <string name="report_confirmation">Gracias por tu ayuda!</string>
     <string name="report_number">Reportar</string>
-    <string name="report_phone_description">Puedes ayudar a otros reportando un número de telefono para que ellos no pasen por lo mismo con esa llamada.\nDespues de que varios reporten ese mismo numero, este sera puesto en el App.</string>
+    <string name="report_phone_description">Puedes ayudar a otros reportando un número de teléfono.\nDespués de que varias personas reporten ese mismo número, este será puesto en el App.</string>
     <string name="use_last_phonecall">Utilizar número de la última llamada?</string>
 </resources>
