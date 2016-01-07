@@ -111,7 +111,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/use_last_phonecall"
-                android:onClick="shit shithsit"
                 android:padding="5dp"
                 android:textColor="@color/white"
                 android:textSize="10dp"

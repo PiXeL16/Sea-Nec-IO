@@ -209,7 +209,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         }
     }
 
-     //@OnClick(R.id.btnUseLastPhonecall)
+     @OnClick(R.id.btnUseLastPhonecall)
     public void btnUseLastPhonecallClicked()
     {
         PhoneNumberLocalPersistence persistence =  new PhoneNumberLocalPersistence();
