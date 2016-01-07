@@ -6,6 +6,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
+    //Push Notifications
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission android:protectionLevel="signature"
+                android:name="com.greenpixels.seanecio.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.greenpixels.seanecio.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +23,14 @@
         android:supportsRtl="true"
         android:name=".general_classes.MainApp"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="uAWZy2slciWWyH00iQUJvGf0LAfWWCTpLNbUKfs2" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="6Ua9Rvta95wnM1pRH83zoke8flSUZ5eCiiDkhkBb" />
+
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
@@ -35,6 +53,28 @@
                 <action android:name="android.intent.action.PHONE_STATE"></action>
             </intent-filter>
         </receiver>
+
+        <service android:name="com.parse.PushService" />
+        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.parse.GcmBroadcastReceiver"
+                  android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.greenpixels.seanecio" />
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3160fd05c86b98a455a64fa5c6cb284df7829cd0" />
     </application>
 
 </manifest>
