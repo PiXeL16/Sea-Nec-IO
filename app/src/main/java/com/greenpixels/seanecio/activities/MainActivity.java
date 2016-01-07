@@ -10,12 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.BlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.components.DaggerBlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.general_classes.MainApp;
+import com.greenpixels.seanecio.modules.AnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
@@ -47,6 +50,8 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
     private BlacklistedPhoneNumberAdapter _adapter;
 
+    private Tracker _tracker;
+
     /**
      * Inject the dependencies in the activity
      */
@@ -59,6 +64,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
                 .contextProvider(new ContextProvider(this))
                 .utilsProvider(new UtilsProvider())
                 .firebaseProvider(new FirebaseProvider())
+                .analyticsTrackerProvider(new AnalyticsTrackerProvider(this))
                 .build();
 
         _component.inject(this);
@@ -72,6 +78,8 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         setSupportActionBar(_toolbar);
 
         _adapter = _component.adapter();
+
+        _tracker = _component.tracker();
 
         _recyclerView.setAdapter(_adapter);
 
@@ -93,6 +101,14 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     @Override
     public void onNewViewStateInstance() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        _tracker.setScreenName(MainActivity.class.getName());
+        _tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     /**

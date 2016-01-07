@@ -2,16 +2,20 @@ package com.greenpixels.seanecio.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.DaggerReportPhoneNumberComponent;
 import com.greenpixels.seanecio.components.ReportPhoneNumberComponent;
 import com.greenpixels.seanecio.general_classes.MainApp;
+import com.greenpixels.seanecio.modules.AnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
@@ -43,8 +47,9 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     @Bind(R.id.progressBar)
     SmoothProgressBar _progressBar;
 
-
     private ReportPhoneNumberComponent _component;
+
+    private Tracker _tracker;
 
     /**
      * Inject the dependencies in the activity
@@ -58,11 +63,12 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
                 .contextProvider(new ContextProvider(this))
                 .utilsProvider(new UtilsProvider())
                 .firebaseProvider(new FirebaseProvider())
+                .analyticsTrackerProvider(new AnalyticsTrackerProvider(this))
                 .build();
 
         _component.inject(this);
     }
-
+    
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -73,6 +79,18 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_report_number);
+
+        _tracker = _component.tracker();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        _tracker.setScreenName(ReportPhoneNumberActivity.class.getName());
+        _tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     /**
@@ -202,6 +220,12 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
      */
     @OnClick(R.id.btn_report_phonenumber)
     public void btnReportPhoneNumberClicked(){
+
+        _tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Report_Phone_Number")
+                .build());
+
         if(validateFields()){
             _editTextPhoneNumber.clearFocus();
             _editTextDescription.clearFocus();
@@ -212,6 +236,12 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
      @OnClick(R.id.btnUseLastPhonecall)
     public void btnUseLastPhonecallClicked()
     {
+
+        _tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Use_Last_Phone_Number")
+                .build());
+
         PhoneNumberLocalPersistence persistence =  new PhoneNumberLocalPersistence();
         this._editTextPhoneNumber.setText(persistence.getLastPhoneNumber(this));
     }

@@ -12,7 +12,6 @@ import com.greenpixels.seanecio.components.DaggerAppComponent;
 import com.greenpixels.seanecio.modules.AppModule;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import io.fabric.sdk.android.Fabric;
@@ -28,6 +27,8 @@ public class  MainApp extends Application {
 
     // App instance
     private static MainApp instance;
+
+
 
     //AppComponent for injection
     @Nullable
@@ -61,6 +62,7 @@ public class  MainApp extends Application {
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
     }
+
 
     public MainApp() {
         instance = this;
