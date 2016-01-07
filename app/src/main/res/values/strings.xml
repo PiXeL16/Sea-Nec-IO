@@ -5,11 +5,13 @@
     <string name="cancel">Cancel</string>
     <string name="error_text">Ooopps, an error occurred</string>
 
+    <string name="main_short_description">We will notify you when one of this phone numbers tries to call you.</string>
+
     <string name="report_number">Report</string>
     <string name="report_number_title">Report Phone number</string>
     <string name="report_confirmation">Thanks for the help!</string>
 
-    <string name="report_phone_description">You can help others by reporting a phone number.\nAfter others report that same phone number a couple of times it will be put live in the App</string>
+    <string name="report_phone_description">You can help others by reporting a phone number.\nAfter others report that same phone number for a couple of times, that phone number will be put live in the App</string>
 
 
     <string name="phone_number">Phone Number</string>

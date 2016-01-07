@@ -9,4 +9,5 @@
     <string name="report_number">Reportar</string>
     <string name="report_phone_description">Puedes ayudar a otros reportando números de teléfono.\nDespués de que varias personas reporten ese mismo número, este será puesto en el App.</string>
     <string name="use_last_phonecall">Utilizar número de la última llamada?</string>
+    <string name="main_short_description">Te notificaremos cuando alguno de estos números de teléfono te intente llamar.</string>
 </resources>
