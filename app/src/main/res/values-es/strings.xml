@@ -5,7 +5,8 @@
     <string name="description">Descripción(Ej: Banco Central)</string>
     <string name="phone_number">Número de Teléfono</string>
     <string name="report_confirmation">Gracias por tu ayuda!</string>
+    <string name="report_number_title">Reportar Número</string>
     <string name="report_number">Reportar</string>
-    <string name="report_phone_description">Puedes ayudar a otros reportando un número de teléfono.\nDespués de que varias personas reporten ese mismo número, este será puesto en el App.</string>
+    <string name="report_phone_description">Puedes ayudar a otros reportando números de teléfono.\nDespués de que varias personas reporten ese mismo número, este será puesto en el App.</string>
     <string name="use_last_phonecall">Utilizar número de la última llamada?</string>
 </resources>

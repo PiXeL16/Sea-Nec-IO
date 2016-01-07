@@ -2,6 +2,7 @@ package com.greenpixels.seanecio.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,8 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
     Button _btnReportPhoneNumber;
     @Bind(R.id.progressBar)
     SmoothProgressBar _progressBar;
+    @Bind(R.id.toolbar)
+    Toolbar _toolbar;
 
     private ReportPhoneNumberComponent _component;
 
@@ -78,6 +81,10 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_report_number);
+
+        setSupportActionBar(_toolbar);
+
+        setTitle("");
 
         _tracker = _component.tracker();
     }

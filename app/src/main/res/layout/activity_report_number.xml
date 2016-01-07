@@ -31,14 +31,34 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_collapseMode="pin"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/report_phone_description"
-            android:id="@+id/textView"
-            android:padding="@dimen/activity_horizontal_padding"
-            android:layout_gravity="center_horizontal"
-            app:layout_collapseMode="parallax"/>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/activity_horizontal_padding"
+                app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textColor="@color/white"
+                    android:text="@string/report_number_title"
+                    android:id="@+id/title"
+                    app:layout_collapseMode="parallax"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/report_phone_description"
+                    android:id="@+id/textView"
+                    android:layout_gravity="center_horizontal"
+                    app:layout_collapseMode="parallax"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
 
 
         </android.support.design.widget.CollapsingToolbarLayout>

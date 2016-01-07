@@ -6,13 +6,14 @@
     <string name="error_text">Ooopps, an error occurred</string>
 
     <string name="report_number">Report</string>
+    <string name="report_number_title">Report Phone number</string>
     <string name="report_confirmation">Thanks for the help!</string>
 
-    <string name="report_phone_description">You can help others by reporting a phone number.\nAfter others report that same number a couple of times it will be put live in the App</string>
+    <string name="report_phone_description">You can help others by reporting a phone number.\nAfter others report that same phone number a couple of times it will be put live in the App</string>
 
 
     <string name="phone_number">Phone Number</string>
-    <string name="description">Description(Ej: Central Bank)</string>
+    <string name="description">Description(e.g: Central Bank)</string>
     <string name="use_last_phonecall">Use last phone call?</string>
 
     <string name="phone_number_required_text">Please add a phone number</string>
