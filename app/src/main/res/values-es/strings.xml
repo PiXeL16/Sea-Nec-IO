@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Sea Necio!</string>
     <string name="action_settings">Configuración</string>
+    <string name="action_about">Acerca De</string>
     <string name="description">Descripción(Ej: Banco Central)</string>
     <string name="phone_number">Número de Teléfono</string>
     <string name="report_confirmation">Gracias por tu ayuda!</string>

@@ -23,7 +23,6 @@ import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
 import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberListPresenter;
-import com.greenpixels.seanecio.telephony.CallNotificationHelper;
 import com.greenpixels.seanecio.view_states.ReportPhoneNumberViewState;
 import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
@@ -123,7 +122,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -178,9 +177,10 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
 
-            CallNotificationHelper.showCallNotification("test test test",this);
+
+//            CallNotificationHelper.showCallNotification("test test test",this);
             return true;
         }
 

@@ -36,6 +36,31 @@ public class PhoneNumberUtils {
         return returnValue;
     }
 
+    /**
+     * Formats a phone number and add symbols for easy reading
+     * @param phoneNumber
+     * @param countryCode
+     * @return
+     */
+    public static String formatPhoneNumber(String phoneNumber, String countryCode)
+    {
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+
+        String returnValue = phoneNumber;
+
+        try {
+
+            Phonenumber.PhoneNumber phoneNumberObject = phoneUtil.parse(phoneNumber, countryCode);
+            returnValue =  phoneUtil.formatNumberForMobileDialing(phoneNumberObject,countryCode,true);
+        }
+        catch (NumberParseException e)
+        {
+            Timber.e(e.getLocalizedMessage());
+        }
+
+        return returnValue;
+    }
+
 
 
 }

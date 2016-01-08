@@ -31,4 +31,12 @@ public class PhoneNumberUtilsTests {
 
         assertEquals(result,"511010");
     }
+
+    @Test
+    public void testFormatingPhoneNumber() throws Exception
+    {
+        String result = PhoneNumberUtils.formatPhoneNumber("60511008", "CR");
+        assertEquals(result,"6051-1008");
+
+    }
 }
