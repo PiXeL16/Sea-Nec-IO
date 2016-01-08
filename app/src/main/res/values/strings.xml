@@ -6,7 +6,7 @@
     <string name="cancel">Cancel</string>
     <string name="error_text">Ooopps, an error occurred</string>
 
-    <string name="main_short_description">We will notify you when one of this phone numbers tries to call you.</string>
+    <string name="main_short_description">We will notify you when one of these phone numbers tries to call you.</string>
 
     <string name="report_number">Report</string>
     <string name="report_number_title">Report Phone number</string>

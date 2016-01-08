@@ -11,4 +11,11 @@
     <string name="report_phone_description">Puedes ayudar a otros reportando números de teléfono.\nDespués de que varias personas reporten ese mismo número, este será puesto en el App.</string>
     <string name="use_last_phonecall">Utilizar número de la última llamada?</string>
     <string name="main_short_description">Te notificaremos cuando alguno de estos números de teléfono te intente llamar.</string>
+    <string name="accept">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="error_text">Ooopps, ocurrio un error</string>
+
+    <string name="phone_number_required_text">Tienes que agregar un número de teléfono</string>
+    <string name="description_required_text">Tienes que agregar una descripcíon</string>
+
 </resources>

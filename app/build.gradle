@@ -32,9 +32,11 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            lintOptions { disable 'MissingTranslation' }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 
     packagingOptions {
         exclude 'META-INF/LICENSE'
