@@ -1,6 +1,7 @@
 package com.greenpixels.seanecio.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.BlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.components.DaggerBlacklistedPhoneNumberListComponent;
+import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.general_classes.MainApp;
 import com.greenpixels.seanecio.modules.AnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.ContextProvider;
@@ -179,8 +181,9 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
 
+            Intent aboutIntent =  new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_SITE));
+            this.startActivity(aboutIntent);
 
-//            CallNotificationHelper.showCallNotification("test test test",this);
             return true;
         }
 

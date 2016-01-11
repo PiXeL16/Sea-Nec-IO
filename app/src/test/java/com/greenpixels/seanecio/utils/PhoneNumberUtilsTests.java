@@ -24,6 +24,10 @@ public class PhoneNumberUtilsTests {
     }
 
 
+    /**
+     * Test striping out a phone number with errors
+     * @throws Exception
+     */
     @Test
     public void testStripCountryCodeWithErrors() throws Exception {
 
@@ -32,11 +36,15 @@ public class PhoneNumberUtilsTests {
         assertEquals(result,"511010");
     }
 
+    /**
+     * Test formatting a phone number without any separation
+     * @throws Exception
+     */
     @Test
     public void testFormatingPhoneNumber() throws Exception
     {
         String result = PhoneNumberUtils.formatPhoneNumber("60511008", "CR");
-        assertEquals(result,"6051-1008");
+        assertEquals(result,"6051 1008");
 
     }
 }

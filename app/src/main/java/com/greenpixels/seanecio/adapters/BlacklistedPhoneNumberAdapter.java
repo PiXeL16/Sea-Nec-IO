@@ -14,7 +14,7 @@ import com.greenpixels.seanecio.telephony.PhoneNumberUtils;
 import javax.inject.Inject;
 
 /**
- * Adapter for the blacklisted using the firebase recycle adapter functionality
+ * Adapter for the blacklisted phone numbers using the firebase recycle adapter functionality
  */
 public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<BlacklistedPhoneNumber, BlacklistedPhoneNumberAdapter.BlacklistedPhoneNumberViewHolder> {
 
