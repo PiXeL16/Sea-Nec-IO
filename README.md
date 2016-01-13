@@ -4,7 +4,7 @@ Sea Necio (Stop bothering... roughly translated) is an Android App that will not
 
 You can also report phone numbers and thereby, help others users of the app.All the phone numbers currently displayed where reported by other users of the App.
 
-Its currently only functioning for `Costa Rica` but it could be easily addpted to other countries / regions.
+Its currently only functioning for `Costa Rica` but it could be easily addapted to other countries / regions.
 
 ##Screenshots
 ![NexusAngle](web/ss1_nexus4_angle1.png)
