@@ -6,6 +6,8 @@ You can also report phone numbers and thereby, help others users of the app.All 
 
 Its currently only functioning for `Costa Rica` but it could be easily addapted to other countries / regions.
 
+It can be downloaded from the Play Store from here: https://play.google.com/store/apps/details?id=com.greenpixels.seanecio
+
 ##Screenshots
 ![NexusAngle](web/ss1_nexus4_angle1.png)
 <img src="web/ss1.png" width="200">
