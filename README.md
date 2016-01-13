@@ -14,7 +14,7 @@ Its currently only functioning for `Costa Rica` but it could be easily addpted t
 ![](web/ss4.png)
 
 ##TODO
-*Improve design/usability for report number activity
-*Add progress indicator on initial load (Normally very quick)
-*Better toaster notification on detected number event when the device is blocked
-*More test coverage
+* Improve design/usability for report number activity
+* Add progress indicator on initial load (Normally very quick)
+* Better toaster notification on detected number event when the device is blocked
+* More test coverage
