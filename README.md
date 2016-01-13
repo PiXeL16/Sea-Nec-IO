@@ -8,10 +8,10 @@ Its currently only functioning for `Costa Rica` but it could be easily addpted t
 
 ##Screenshots
 ![NexusAngle](web/ss1_nexus4_angle1.png)
-![](web/ss1.png)
-![](web/ss2.png)
-![](web/ss3.png)
-![](web/ss4.png)
+<img src="web/ss1.png" width="200">
+<img src="web/ss2.png" width="200">
+<img src="web/ss3.png" width="200">
+<img src="web/ss4.png" width="200">
 
 ##TODO
 * Improve design/usability for report number activity
