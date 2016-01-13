@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.crashlytics.android.Crashlytics;
 import com.firebase.client.Firebase;
+import com.greenpixels.seanecio.BuildConfig;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.DaggerAppComponent;
 import com.greenpixels.seanecio.modules.AppModule;
@@ -55,7 +56,9 @@ public class  MainApp extends Application {
         Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
         //Crashes
-        Fabric.with(this, new Crashlytics());
+//        if(!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+//        }
 
         //Pushes
         Parse.initialize(this, "uAWZy2slciWWyH00iQUJvGf0LAfWWCTpLNbUKfs2", "6Ua9Rvta95wnM1pRH83zoke8flSUZ5eCiiDkhkBb");
