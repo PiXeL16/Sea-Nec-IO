@@ -239,7 +239,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
         }
     }
 
-     @OnClick(R.id.btnUseLastPhonecall)
+    @OnClick(R.id.btnUseLastPhonecall)
     public void btnUseLastPhonecallClicked()
     {
 
@@ -249,7 +249,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
                 .build());
 
         PhoneNumberLocalPersistence persistence =  new PhoneNumberLocalPersistence();
-        this._editTextPhoneNumber.setText(persistence.getLastPhoneNumber(this));
+        this._editTextPhoneNumber.setText(persistence.getLastPhoneNumber());
     }
 
 }

@@ -61,7 +61,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                 case TelephonyManager.CALL_STATE_RINGING:
 
                     //Save last phone for persistence
-                    _phoneNumberLocalPersistence.saveLastPhoneNumber(incomingNumber, _context);
+                    _phoneNumberLocalPersistence.saveLastPhoneNumber(incomingNumber);
 
                     checkAndAlertBlacklistedPhoneNumber(incomingNumber);
 

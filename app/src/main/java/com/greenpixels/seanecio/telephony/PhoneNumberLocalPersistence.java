@@ -3,6 +3,8 @@ package com.greenpixels.seanecio.telephony;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.greenpixels.seanecio.general_classes.MainApp;
+
 /**
  * Class in charge of saving phone call information locally
  * It will provide last call information as well
@@ -18,9 +20,9 @@ public class PhoneNumberLocalPersistence {
      * @param phoneNumber
      * @param cont
      */
-    public void saveLastPhoneNumber(String phoneNumber, Context cont)
+    public void saveLastPhoneNumber(String phoneNumber)
     {
-        SharedPreferences settings = cont.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = MainApp.getContext().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(lastCallPrefKey, phoneNumber);
 
@@ -33,10 +35,10 @@ public class PhoneNumberLocalPersistence {
      * @param cont
      * @return
      */
-    public String getLastPhoneNumber(Context cont)
+    public String getLastPhoneNumber()
     {
         // Restore preferences
-        SharedPreferences settings = cont.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = MainApp.getContext().getSharedPreferences(PREFS_NAME, 0);
         String phoneNumber = settings.getString(lastCallPrefKey, "");
         return phoneNumber;
     }
