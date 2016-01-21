@@ -61,6 +61,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                 case TelephonyManager.CALL_STATE_RINGING:
 
                     //Save last phone for persistence
+                    Timber.d("Saving call locally "+incomingNumber);
                     _phoneNumberLocalPersistence.saveLastPhoneNumber(incomingNumber);
 
                     checkAndAlertBlacklistedPhoneNumber(incomingNumber);

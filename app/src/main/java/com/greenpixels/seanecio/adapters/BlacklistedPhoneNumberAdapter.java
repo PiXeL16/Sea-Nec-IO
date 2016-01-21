@@ -24,4 +24,5 @@ public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<Black
         viewHolder.blacklistedDescription.setText(blacklistedPhoneNumber.getDescription());
         viewHolder.blacklistedPhoneNumber.setText(PhoneNumberUtils.formatPhoneNumber(blacklistedPhoneNumber.getPhoneNumber(), Constants.getDefaultCountryCode()));
     }
+
 }

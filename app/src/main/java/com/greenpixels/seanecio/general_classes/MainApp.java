@@ -56,9 +56,9 @@ public class  MainApp extends Application {
         Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
         //Crashes
-//        if(!BuildConfig.DEBUG) {
+        if(!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
-//        }
+        }
 
         //Pushes
         Parse.initialize(this, "uAWZy2slciWWyH00iQUJvGf0LAfWWCTpLNbUKfs2", "6Ua9Rvta95wnM1pRH83zoke8flSUZ5eCiiDkhkBb");

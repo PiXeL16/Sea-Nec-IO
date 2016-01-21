@@ -65,16 +65,44 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/contentView"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_below="@id/toolbar"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+     >
+
+
+    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        android:id="@+id/progressBar"
+        app:spb_sections_count="4"
+        app:spb_color="@color/colorAccent"
+        app:spb_speed="2.0"
+        app:spb_stroke_width="4dp"
+        app:spb_stroke_separator_length="4dp"
+        app:spb_reversed="false"
+        app:spb_mirror_mode="false"
+        app:spb_progressiveStart_activated="true"
+        app:spb_progressiveStart_speed="1.5"
+        app:spb_progressiveStop_speed="3.4"
+        />
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_margin="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
-            android:layout_below="@id/toolbar"
-            android:clipToPadding="false"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_height="match_parent"/>
 
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

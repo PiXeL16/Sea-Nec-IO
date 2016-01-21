@@ -1,15 +1,20 @@
 package com.greenpixels.seanecio.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -25,13 +30,14 @@ import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
 import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberListPresenter;
-import com.greenpixels.seanecio.view_states.ReportPhoneNumberViewState;
+import com.greenpixels.seanecio.view_states.BlacklistedPhoneNumberListViewState;
 import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.RestoreableViewState;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 
 /**
  * Main activity class that will contain a list of blacklisted phone numbers
@@ -47,11 +53,16 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     @Bind(R.id.recyclerView)
     RecyclerView _recyclerView;
 
+    @Bind(R.id.progressBar)
+    SmoothProgressBar _progressBar;
+
     private BlacklistedPhoneNumberListComponent _component;
 
     private BlacklistedPhoneNumberAdapter _adapter;
 
     private Tracker _tracker;
+
+    private RecyclerView.AdapterDataObserver _observer;
 
     /**
      * Inject the dependencies in the activity
@@ -86,6 +97,37 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Shows loading and when the adapters starts to show some content hide the loading
+        this.showLoading();
+        this._observer = new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                showContent();
+                _adapter.unregisterAdapterDataObserver(_observer);
+            }
+        };
+
+        _adapter.registerAdapterDataObserver(_observer);
+    }
+
+
+    /**
+     *Check for permissions, will show dialog on api 23: TODO SHOW funcionality explaning why it needs that permission
+     */
+    public void checkForPhonePermissionsAndRequest()
+    {
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        0);
+        }
     }
 
 
@@ -110,15 +152,15 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
         _tracker.setScreenName(MainActivity.class.getName());
         _tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        //Check for permisions on API 23(M)
+        checkForPhonePermissionsAndRequest();
     }
 
-    /**
-     * Creates the view state
-     * @return
-     */
+
     @Override
     public RestoreableViewState createViewState() {
-        return new ReportPhoneNumberViewState();
+        return new BlacklistedPhoneNumberListViewState();
     }
 
     @Override
@@ -128,12 +170,12 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         return true;
     }
 
-    /**
-     * Shows the content view. Not really used at the momment
-     */
+
     @Override
     public void showContent() {
 
+        _progressBar.setVisibility(View.GONE);
+        _progressBar.progressiveStop();
     }
 
     @OnClick(R.id.fab)
@@ -164,11 +206,10 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
      */
     @Override
     public void showLoading() {
-//        ReportPhoneNumberViewState vs = (ReportPhoneNumberViewState) viewState;
+//        BlacklistedPhoneNumberListViewState vs = (BlacklistedPhoneNumberListViewState) viewState;
 //        vs.setShowLoading();
-//        _btnReportPhoneNumber.setEnabled(false);
-//        _progressBar.setVisibility(View.VISIBLE);
-//        _progressBar.progressiveStart();
+        _progressBar.setVisibility(View.VISIBLE);
+        _progressBar.progressiveStart();
     }
 
     @Override
