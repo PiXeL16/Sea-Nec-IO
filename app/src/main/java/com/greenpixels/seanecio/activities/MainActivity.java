@@ -152,7 +152,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
         super.onResume();
 
         _firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN,null);
-        
+
         //Check for permisions on API 23(M)
         checkForPhonePermissionsAndRequest();
     }
