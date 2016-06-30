@@ -1,10 +1,10 @@
 package com.greenpixels.seanecio.components;
 
-import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.greenpixels.seanecio.activities.MainActivity;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
-import com.greenpixels.seanecio.modules.AnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.ContextProvider;
+import com.greenpixels.seanecio.modules.FirebaseAnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
 import com.greenpixels.seanecio.presenters.BlacklistedPhoneNumberListPresenter;
@@ -19,7 +19,7 @@ import dagger.Component;
 @Singleton
 @Component(
         dependencies = AppComponent.class,
-        modules = {ContextProvider.class, UtilsProvider.class, FirebaseProvider.class, AnalyticsTrackerProvider.class}
+        modules = {ContextProvider.class, UtilsProvider.class, FirebaseProvider.class, FirebaseAnalyticsTrackerProvider.class}
 )
 public interface BlacklistedPhoneNumberListComponent {
 
@@ -29,6 +29,6 @@ public interface BlacklistedPhoneNumberListComponent {
 
     BlacklistedPhoneNumberAdapter adapter();
 
-    Tracker tracker();
+    FirebaseAnalytics firebaseAnalytics();
 
 }

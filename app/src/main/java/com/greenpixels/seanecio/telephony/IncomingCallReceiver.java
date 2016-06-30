@@ -5,18 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
-import com.greenpixels.seanecio.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
-import com.greenpixels.seanecio.utils.AlertUtils;
-import com.greenpixels.seanecio.utils.NotificationUtils;
 
 import timber.log.Timber;
 
@@ -87,7 +84,8 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         String stripedPhoneNumber = PhoneNumberUtils.stripCountryCodeFromPhoneNumber(phoneNumber, Constants.getDefaultCountryCode());
 
         //Creates the firebase ref: TODO: This should be injected
-        Firebase ref = new Firebase(Constants.getFirebaseUrl());
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebase.getReference();
         ref.keepSynced(true);
 
         Timber.i("Checking for blacklisted phone number");
@@ -120,7 +118,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError firebaseError) {
                 Timber.i(firebaseError.getMessage());
             }
         });

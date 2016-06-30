@@ -1,45 +1,55 @@
 {
   "project_info": {
-    "project_id": "seanecio-8a5ef",
-    "project_number": "152515524813",
-    "name": "SeaNecio"
+    "project_number": "214911550266",
+    "firebase_url": "https://seanecio.firebaseio.com",
+    "project_id": "firebase-seanecio",
+    "storage_bucket": "firebase-seanecio.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:152515524813:android:66d0e2fb623f693d",
-        "client_id": "android:com.greenpixels.seanecio",
-        "client_type": 1,
+        "mobilesdk_app_id": "1:214911550266:android:66d0e2fb623f693d",
         "android_client_info": {
           "package_name": "com.greenpixels.seanecio"
         }
       },
-      "oauth_client": [],
-      "api_key": [],
-      "services": {
-        "analytics_service": {
-          "status": 2,
-          "analytics_property": {
-            "tracking_id": "UA-2097885-23"
+      "oauth_client": [
+        {
+          "client_id": "214911550266-oardka6ifrni8t0in4fcobppe6i3hbbf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.greenpixels.seanecio",
+            "certificate_hash": "CE2CD8F75819602F438ED6F8AA47AE24267CA2F7"
           }
         },
-        "cloud_messaging_service": {
-          "status": 1,
-          "apns_config": []
+        {
+          "client_id": "214911550266-95e9p7ieacf6d0tpe0r9bosj2gqbd5ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTVT4yoLH35JkUf9bXAGg5acLiruWzewE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "google_signin_service": {
-          "status": 1
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214911550266-95e9p7ieacf6d0tpe0r9bosj2gqbd5ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
   ],
-  "client_info": [],
-  "ARTIFACT_VERSION": "1"
+  "configuration_version": "1"
 }

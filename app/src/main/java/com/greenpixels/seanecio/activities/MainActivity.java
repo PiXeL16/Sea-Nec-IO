@@ -16,8 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -25,7 +24,7 @@ import com.greenpixels.seanecio.components.BlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.components.DaggerBlacklistedPhoneNumberListComponent;
 import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.general_classes.MainApp;
-import com.greenpixels.seanecio.modules.AnalyticsTrackerProvider;
+import com.greenpixels.seanecio.modules.FirebaseAnalyticsTrackerProvider;
 import com.greenpixels.seanecio.modules.ContextProvider;
 import com.greenpixels.seanecio.modules.FirebaseProvider;
 import com.greenpixels.seanecio.modules.UtilsProvider;
@@ -60,9 +59,9 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
     private BlacklistedPhoneNumberAdapter _adapter;
 
-    private Tracker _tracker;
-
     private RecyclerView.AdapterDataObserver _observer;
+
+    private FirebaseAnalytics _firebaseAnalytics;
 
     /**
      * Inject the dependencies in the activity
@@ -76,7 +75,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
                 .contextProvider(new ContextProvider(this))
                 .utilsProvider(new UtilsProvider())
                 .firebaseProvider(new FirebaseProvider())
-                .analyticsTrackerProvider(new AnalyticsTrackerProvider(this))
+                .firebaseAnalyticsTrackerProvider(new FirebaseAnalyticsTrackerProvider(this))
                 .build();
 
         _component.inject(this);
@@ -91,11 +90,12 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
         _adapter = _component.adapter();
 
-        _tracker = _component.tracker();
-
         _recyclerView.setAdapter(_adapter);
 
+        _firebaseAnalytics = _component.firebaseAnalytics();
+
         _recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         //Shows loading and when the adapters starts to show some content hide the loading
         this.showLoading();
@@ -149,9 +149,6 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     @Override
     protected void onResume() {
         super.onResume();
-
-        _tracker.setScreenName(MainActivity.class.getName());
-        _tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         //Check for permisions on API 23(M)
         checkForPhonePermissionsAndRequest();

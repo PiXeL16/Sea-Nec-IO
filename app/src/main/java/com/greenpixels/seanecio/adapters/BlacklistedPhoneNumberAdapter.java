@@ -1,7 +1,7 @@
 package com.greenpixels.seanecio.adapters;
 
-import com.firebase.client.Firebase;
-import com.firebase.ui.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.FirebaseDatabase;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
@@ -15,8 +15,8 @@ import javax.inject.Inject;
 public class BlacklistedPhoneNumberAdapter extends FirebaseRecyclerAdapter<BlacklistedPhoneNumber, BlacklistedPhoneNumberViewHolder> {
 
     @Inject
-    public BlacklistedPhoneNumberAdapter(Firebase ref) {
-        super(BlacklistedPhoneNumber.class, R.layout.blacklisted_number_item, BlacklistedPhoneNumberViewHolder.class, ref.child(BlacklistedPhoneNumber.collectionName));
+    public BlacklistedPhoneNumberAdapter(FirebaseDatabase firebaseDatabase) {
+        super(BlacklistedPhoneNumber.class, R.layout.blacklisted_number_item, BlacklistedPhoneNumberViewHolder.class, firebaseDatabase.getReference().child(BlacklistedPhoneNumber.collectionName));
     }
 
     @Override

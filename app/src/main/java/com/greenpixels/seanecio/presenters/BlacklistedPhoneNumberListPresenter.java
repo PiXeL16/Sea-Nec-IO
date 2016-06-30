@@ -1,11 +1,11 @@
 package com.greenpixels.seanecio.presenters;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.greenpixels.seanecio.model.BlacklistedPhoneNumber;
-import com.greenpixels.seanecio.model.PhoneNumber;
 import com.greenpixels.seanecio.views.BlacklistedPhoneNumberListView;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
@@ -21,12 +21,14 @@ import timber.log.Timber;
 public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<BlacklistedPhoneNumberListView> {
 
     private EventBus _eventBus;
-    private Firebase _firebase;
+    private FirebaseDatabase _firebase;
+    private DatabaseReference _databaseReference;
 
     @Inject
-    public BlacklistedPhoneNumberListPresenter(EventBus eventBus, Firebase firebase) {
+    public BlacklistedPhoneNumberListPresenter(EventBus eventBus, FirebaseDatabase firebase) {
         _eventBus = eventBus;
         _firebase = firebase;
+        _databaseReference = _firebase.getReference();
     }
 
     @Override
@@ -54,10 +56,9 @@ public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<Blackl
             getView().showLoading();
         }
 
-        Firebase blacklistedPhoneNumbers = _firebase.child(BlacklistedPhoneNumber.collectionName);
+        DatabaseReference blacklistedPhoneNumbers = _databaseReference.child(BlacklistedPhoneNumber.collectionName);
 
-
-        blacklistedPhoneNumbers .addValueEventListener(new ValueEventListener() {
+        blacklistedPhoneNumbers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Timber.d("There are " + snapshot.getChildrenCount() + " blacklisted phone numbers");
@@ -67,7 +68,7 @@ public class BlacklistedPhoneNumberListPresenter extends MvpBasePresenter<Blackl
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError firebaseError) {
                 Timber.e("The read failed: " + firebaseError.getMessage());
             }
         });

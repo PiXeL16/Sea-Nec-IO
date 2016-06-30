@@ -1,7 +1,8 @@
 package com.greenpixels.seanecio.presenters;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.greenpixels.seanecio.general_classes.Constants;
 import com.greenpixels.seanecio.model.PhoneNumber;
 import com.greenpixels.seanecio.telephony.PhoneNumberUtils;
@@ -18,12 +19,14 @@ import de.greenrobot.event.EventBus;
 public class ReportPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumberView> {
 
     private EventBus _eventBus;
-    private Firebase _firebase;
+    private FirebaseDatabase _firebase;
+    private DatabaseReference _databaseReference;
 
     @Inject
-    public ReportPhoneNumberPresenter(EventBus eventBus, Firebase firebase) {
+    public ReportPhoneNumberPresenter(EventBus eventBus, FirebaseDatabase firebase) {
         _eventBus = eventBus;
         _firebase = firebase;
+        _databaseReference = _firebase.getReference();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class ReportPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumb
             getView().showLoading();
         }
         //Gets the firebase collection to insert
-        Firebase phoneNumbers = _firebase.child(PhoneNumber.collectionName);
+        DatabaseReference phoneNumbers = _databaseReference.child(PhoneNumber.collectionName);
 
         //Strips the phone number of symbols and country code
         String stripedPhoneNumber = PhoneNumberUtils.stripCountryCodeFromPhoneNumber(phoneNumber, Constants.getDefaultCountryCode());
@@ -63,11 +66,10 @@ public class ReportPhoneNumberPresenter extends MvpBasePresenter<ReportPhoneNumb
         //Creates the phoneNumberObject to insert
         PhoneNumber phoneNumberObject = new PhoneNumber(stripedPhoneNumber,description);
 
-        //Insert the phonenumber in the firebase
-        phoneNumbers.push().setValue(phoneNumberObject, new Firebase.CompletionListener() {
+        phoneNumbers.push().setValue(phoneNumberObject, new DatabaseReference.CompletionListener() {
 
             @Override
-            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+            public void onComplete(DatabaseError firebaseError, DatabaseReference firebase) {
                 if (firebaseError != null) {
                     //Shows an error message
                    getView().showError(firebaseError.getMessage());

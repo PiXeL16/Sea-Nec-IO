@@ -6,13 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.crashlytics.android.Crashlytics;
-import com.firebase.client.Firebase;
+import com.google.firebase.database.FirebaseDatabase;
 import com.greenpixels.seanecio.BuildConfig;
 import com.greenpixels.seanecio.components.AppComponent;
 import com.greenpixels.seanecio.components.DaggerAppComponent;
 import com.greenpixels.seanecio.modules.AppModule;
-import com.parse.Parse;
-import com.parse.ParseInstallation;
 import com.squareup.leakcanary.RefWatcher;
 
 import io.fabric.sdk.android.Fabric;
@@ -28,8 +26,6 @@ public class  MainApp extends Application {
 
     // App instance
     private static MainApp instance;
-
-
 
     //AppComponent for injection
     @Nullable
@@ -50,20 +46,14 @@ public class  MainApp extends Application {
 //        refWatcher = LeakCanary.install(this);
         //Logging
         Timber.plant(new Timber.DebugTree());
-        //FireBase
-        Firebase.setAndroidContext(this);
+
         //Set local persistence
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //Crashes
         if(!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
-
-        //Pushes
-        Parse.initialize(this, "uAWZy2slciWWyH00iQUJvGf0LAfWWCTpLNbUKfs2", "6Ua9Rvta95wnM1pRH83zoke8flSUZ5eCiiDkhkBb");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
     }
 
 
