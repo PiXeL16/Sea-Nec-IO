@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -150,6 +151,8 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     protected void onResume() {
         super.onResume();
 
+        _firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN,null);
+        
         //Check for permisions on API 23(M)
         checkForPhonePermissionsAndRequest();
     }
