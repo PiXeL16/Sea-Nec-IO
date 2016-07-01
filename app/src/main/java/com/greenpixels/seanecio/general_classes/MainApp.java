@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 import com.greenpixels.seanecio.BuildConfig;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -47,13 +48,24 @@ public class  MainApp extends Application {
         //Logging
         Timber.plant(new Timber.DebugTree());
 
-        //Set local persistence
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        initFirebase();
 
         //Crashes
         if(!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
+    }
+
+    /**
+     * Inits firebase
+     */
+    public void initFirebase(){
+
+        //Set local persistence
+        if (!FirebaseApp.getApps(this).isEmpty()) {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }
+
     }
 
 

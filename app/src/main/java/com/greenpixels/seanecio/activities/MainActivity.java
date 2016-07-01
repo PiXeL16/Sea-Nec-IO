@@ -16,8 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.database.FirebaseDatabase;
 import com.greenpixels.seanecio.R;
 import com.greenpixels.seanecio.adapters.BlacklistedPhoneNumberAdapter;
 import com.greenpixels.seanecio.components.AppComponent;
@@ -69,6 +71,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
      */
     @Override
     public void injectDependencies(){
+
         AppComponent appComponent = MainApp.get(this).appComponent();
 
         _component = DaggerBlacklistedPhoneNumberListComponent.builder()
@@ -86,6 +89,8 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         setSupportActionBar(_toolbar);
 
@@ -110,6 +115,7 @@ public class MainActivity extends MvpViewStateActivity<BlacklistedPhoneNumberLis
 
         _adapter.registerAdapterDataObserver(_observer);
     }
+
 
 
     /**
