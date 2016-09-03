@@ -58,6 +58,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:support-v13:24.0.0'
     compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.android.support:cardview-v7:24.0.0'
 
     //Bus
     compile 'de.greenrobot:eventbus:2.4.0'                                  //proguard

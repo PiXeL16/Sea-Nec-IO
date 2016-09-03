@@ -84,7 +84,7 @@ public class ReportPhoneNumberActivity extends MvpViewStateActivity<ReportPhoneN
 
         setSupportActionBar(_toolbar);
 
-        setTitle("");
+        setTitle(getString(R.string.report_number_title));
 
         _firebaseAnalytics = _component.firebaseAnalytics();
     }
